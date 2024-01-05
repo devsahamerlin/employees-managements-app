@@ -1,0 +1,79 @@
+<div class="container">
+    <h1 mat-dialog-title>{{actionType}} Employee</h1>
+    <form *ngIf="actionType == 'Add'" [formGroup]="form">
+        <div mat-dialog-content>
+
+            <mat-spinner [diameter]="30" [strokeWidth]="2" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner>
+
+            <mat-form-field class="emp-full-width" appearance="fill">
+                <mat-label>Department</mat-label>
+                <mat-select id="department" placeholder="Department" formControlName="departmentId">
+                    <mat-option *ngFor="let department of departments" [value]="department._id">
+                        {{ department.name }}
+                    </mat-option>
+
+                </mat-select>
+                <div *ngIf="f['departmentId'].touched && f['departmentId'].invalid" class="alert alert-danger">
+                </div>
+                <div *ngIf="f['departmentId'].errors && f['departmentId'].errors['required']">DepartmentId is
+                    required.</div>
+            </mat-form-field>
+
+            <mat-form-field class="emp-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Ex. Saha Merlin" type="text" id="name" formControlName="name">
+                <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger"></div>
+                <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+            </mat-form-field>
+            <mat-form-field class="emp-full-width" appearance="fill">
+                <mat-label>Surname</mat-label>
+                <input matInput placeholder="Ex. devsahamerlin" type="text" id="surname" formControlName="surname">
+                <div *ngIf="f['surname'].touched && f['surname'].invalid" class="alert alert-danger"></div>
+                <div *ngIf="f['surname'].errors && f['surname'].errors['required']">Surname is required.</div>
+            </mat-form-field>
+
+
+        </div>
+        <div mat-dialog-actions class="space-between">
+            <button mat-flat-button color="primary" (click)="saveEmployee()" [disabled]="!form.valid">Save</button>
+            <button mat-flat-button color="warn" (click)="dialogRef.close(false)">Cancel</button>
+        </div>
+    </form>
+    <form *ngIf="actionType == 'Edit'" [formGroup]="form">
+        <div mat-dialog-content>
+            <mat-spinner [diameter]="30" [strokeWidth]="2" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner>
+
+            <mat-form-field class="emp-full-width" appearance="fill">
+                <mat-label>Department</mat-label>
+                <mat-select id="department" placeholder="Department" formControlName="departmentId">
+                    <mat-option *ngFor="let department of departments" [value]="department._id">
+                        {{ department.name }}
+                    </mat-option>
+                </mat-select>
+                <div *ngIf="f['departmentId'].touched && f['departmentId'].invalid" class="alert alert-danger">
+                </div>
+                <div *ngIf="f['departmentId'].errors && f['departmentId'].errors['required']">DepartmentId is
+                    required.</div>
+            </mat-form-field>
+
+            <mat-form-field class="emp-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Ex. General Dentistry" type="text" id="name" formControlName="name">
+                <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger"></div>
+                <div *ngIf="f['name'].errors && f['name'].errors['required']">name is required.</div>
+            </mat-form-field>
+            <mat-form-field class="emp-full-width" appearance="fill">
+                <mat-label>Surname</mat-label>
+                <input matInput placeholder="Ex. devsahamerlin" type="text" id="surname" formControlName="surname">
+                <div *ngIf="f['surname'].touched && f['surname'].invalid" class="alert alert-danger"></div>
+                <div *ngIf="f['surname'].errors && f['surname'].errors['required']">Surname is required.</div>
+            </mat-form-field>
+
+        </div>
+        <div mat-dialog-actions class="space-between">
+            <button mat-flat-button color="primary" (click)="updateEmployee()" [disabled]="!form.valid">Save</button>
+            <button mat-flat-button color="warn" (click)="dialogRef.close(false)">Cancel</button>
+        </div>
+    </form>
+
+</div>

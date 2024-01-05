@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="head">
+    <button mat-icon-button class="emp-icon" aria-label="icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Employees Management</span>
+    <span class="emp-spacer"></span>
+    <ul>
+        <li routerLink="departments">Departments </li>
+    </ul>
+    <ul>
+        <li routerLink="employees">Employees </li>
+    </ul>
+
+</mat-toolbar>
+<mat-sidenav-container #start>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
